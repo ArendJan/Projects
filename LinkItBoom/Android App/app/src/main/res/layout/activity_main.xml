@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="tk.arendjan.linkitboom.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextsong"
+        android:id="@+id/playnextB"
+        android:clickable="false"
+        android:layout_marginBottom="136dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/currentsongtL"
+        android:layout_toEndOf="@+id/currentsongtL" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/currentsong"
+        android:id="@+id/currentsongtL"
+        android:layout_marginTop="78dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/nosong"
+        android:id="@+id/currentsongL"
+        android:layout_alignRight="@+id/playnextB"
+        android:layout_alignEnd="@+id/playnextB"
+        android:layout_above="@+id/pauseplayB"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/currentsongtL"
+        android:layout_alignStart="@+id/currentsongtL"
+        android:layout_below="@+id/currentsongtL" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pauseplay"
+        android:id="@+id/pauseplayB"
+        android:layout_alignBottom="@+id/playnextB"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reload"
+        android:id="@+id/reloadB"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/notSetVolume"
+        android:id="@+id/volumeL"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/upVB"
+        android:layout_alignStart="@+id/upVB"
+        android:maxWidth="20dp"
+        android:layout_toLeftOf="@+id/currentsongL"
+        android:layout_toStartOf="@+id/currentsongL" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/downVolume"
+        android:id="@+id/downVB"
+        android:layout_below="@+id/currentsongL"
+        android:layout_alignLeft="@+id/volumeL"
+        android:layout_alignStart="@+id/volumeL"
+        android:layout_toLeftOf="@+id/currentsongL"
+        android:layout_toStartOf="@+id/currentsongL" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upVolume"
+        android:id="@+id/upVB"
+        android:layout_alignTop="@+id/currentsongL"
+        android:layout_toStartOf="@+id/currentsongL"
+        android:layout_toLeftOf="@+id/currentsongL" />
+
+</RelativeLayout>
