@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { //some blabla for creating the menu
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
+    @Override //Some blablabla for a pressed menu item.
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) {//This starts the Setting class.
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
             return true;
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //The actual task which requests the data from the LinkIt ONE.
-    //Can be fired with: new RequestTask().execute(String url, String MODE(1 for currentSongLabel, 2 for VolumeLabel));
+    //The actual task which requests the data from the Arduino.
+    //Can be fired with: new RequestTask().execute(String url, String MODE(1 for main label, rest you can change/add));
     class RequestTask extends AsyncTask<String, String, String> {
         private int MODE = 0; //1 == title of song , 2 == volume
         private boolean error = false;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             String responseString;
 
-            //Try to get the data from the LinkIt ONE.
+            //Try to get the data from the LinkIt ONE. Do not change this unless you know what this code does!
             try {
                 URLConnection connection = new URL(uri[0]).openConnection();
 
