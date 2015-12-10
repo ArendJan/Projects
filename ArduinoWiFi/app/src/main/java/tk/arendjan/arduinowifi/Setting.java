@@ -33,7 +33,7 @@ public class Setting extends AppCompatActivity {
         final TextView input = (TextView) findViewById(R.id.ipTF);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String IP = preferences.getString("IP", "");
-        input.setText(IP.replace("http://", "").replace("/", ""));
+        input.setText(IP.replace("http://", "").replace("/", "")); //Fill in the previous set IP in the label.
 
         //When the ok button is clicked, show the dialog and fire of a request.
         Button ok = (Button) findViewById(R.id.okB);
