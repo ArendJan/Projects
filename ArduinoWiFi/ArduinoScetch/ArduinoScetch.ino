@@ -5,7 +5,6 @@
 #include <LWiFi.h>
 #include <LWiFiServer.h>
 #include <LWiFiClient.h>
-#include <LBattery.h>
 #define WIFI_AP "van_Hilten"
 #define WIFI_PASSWORD "Pinksteren1"//Fill in your own things
 #define WIFI_AUTH LWIFI_WPA  // choose from LWIFI_OPEN, LWIFI_WPA, or LWIFI_WEP according to your WiFi AP configuration
