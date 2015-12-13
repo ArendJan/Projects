@@ -33,6 +33,8 @@ WiFiServer server(80);
 void setup() {
   //Serial.begin(9600);      // initialize serial communication
   pinMode(9, OUTPUT);      // set the LED pin mode
+  pinMode(A1, INPUT);
+  pinMode(A0, INPUT);
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
@@ -67,7 +69,7 @@ void loop() {
     boolean cancel = true;
     String currentLine = "";                // make a String to hold incoming data from the client
     String response="asdf;jkl;j;jl;jl;jl;kj;oiho;hu;hu;jhl;jhlkjl;jl;kjl;kjl;jl;kjl;kj;lkjl;kjl;kj;lkjlk;jkl";
-    while (client.connected()) {            // loop while the client's connected
+    while (client.connected() && cancel) {            // loop while the client's connected
       if (client.available()) {             // if there's bytes to read from the client,
         char c = client.read();             // read a byte, then
         //Serial.write(c);                    // print it out the serial monitor
@@ -108,8 +110,16 @@ void loop() {
           
           
         }
+        else if(currentLine.endsWith("GET /VOLT")){
+          response = String(analogRead(A0));
+          //this is done when the phone requests the amount of volts, which are calculated on the phone.
+        }
        //You can add every get statement eg: "GET /"
       }
+      if (countWhile > 2000) {  //The wifi library is sometimes really buggy, especially when requesting data using a browser, android is not a problem
+      cancel = false;           //So this is to prevent staying in the loop infinitly
+      }
+      delayMicroseconds(10);    //The 2000 looping is done really fast.
     }
     // close the connection:
     client.stop();
