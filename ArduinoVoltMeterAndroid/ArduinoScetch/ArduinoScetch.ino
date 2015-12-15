@@ -1,46 +1,78 @@
 /*
- * This code is evolved from the example wifiserver(both the LinkIt ONE example and the Arduino example, created by Arend-Jan van Hilten
- */
-#include <LTask.h>
-#include <LWiFi.h>
-#include <LWiFiServer.h>
-#include <LWiFiClient.h>
-#define WIFI_AP "van_Hilten"
-#define WIFI_PASSWORD "Pinksteren1"//Fill in your own things
-#define WIFI_AUTH LWIFI_WPA  // choose from LWIFI_OPEN, LWIFI_WPA, or LWIFI_WEP according to your WiFi AP configuration
+  WiFi Web Server LED Blink
 
-LWiFiServer server(80);
-void setup()
-{
+ A simple web server that lets you blink an LED via the web.
+ This sketch will print the IP address of your WiFi Shield (once connected)
+ to the Serial monitor. From there, you can open that address in a web browser
+ to turn on and off the LED on pin 9.
+
+ If the IP address of your shield is yourAddress:
+ http://yourAddress/H turns the LED on
+ http://yourAddress/L turns it off
+
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the Wifi.begin() call accordingly.
+
+ Circuit:
+ * WiFi shield attached
+ * LED attached to pin 9
+
+ created 25 Nov 2012
+ by Tom Igoe
+ */
+#include <SPI.h>
+#include <WiFi.h>
+
+char ssid[] = "van_Hilten";      // your network SSID (name)
+char pass[] = "Pinksteren1";   // your network password
+int keyIndex = 0;                 // your network key Index number (needed only for WEP)
+
+int status = WL_IDLE_STATUS;
+WiFiServer server(80);
+
+void setup() {
+  //Serial.begin(9600);      // initialize serial communication
+  pinMode(9, OUTPUT);      // set the LED pin mode
   pinMode(A1, INPUT);
   pinMode(A0, INPUT);
-  //Start the wifi connection and the server.
-  LWiFi.begin();
-  // keep retrying until connected to AP
 
-  while (0 == LWiFi.connect(WIFI_AP, LWiFiLoginInfo(WIFI_AUTH, WIFI_PASSWORD)))
-  {
-    delay(10);
+  // check for the presence of the shield:
+  if (WiFi.status() == WL_NO_SHIELD) {
+    //Serial.println("WiFi shield not present");
+    while (true);       // don't continue
   }
-  server.begin();
 
+  
+    //Serial.println("Please upgrade the firmware");
+
+  // attempt to connect to Wifi network:
+  while ( status != WL_CONNECTED) {
+    //Serial.print("Attempting to connect to Network named: ");
+    //Serial.println(ssid);                   // print the network name (SSID);
+
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    status = WiFi.begin(ssid, pass);
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+  server.begin();                           // start the web server on port 80
+  
 }
 
 
-void loop()
-{
-  LWiFiClient client = server.available();
-  if (client)
-  {
+void loop() {
+  WiFiClient client = server.available();   // listen for incoming clients
+
+  if (client) {                             // if you get a client,
+    
     int countWhile = 0;
     boolean cancel = true;
     String currentLine = "";                // make a String to hold incoming data from the client
     String response="asdf;jkl;j;jl;jl;jl;kj;oiho;hu;hu;jhl;jhlkjl;jl;kjl;kjl;jl;kjl;kj;lkjl;kjl;kj;lkjlk;jkl";
-    while (client.connected() && cancel) {          // loop while the client's connected
+    while (client.connected() && cancel) {            // loop while the client's connected
       if (client.available()) {             // if there's bytes to read from the client,
-        int i = client.read();    //Some other voodoo to correctly retrieve the data
-        char c = char(i);
-        
+        char c = client.read();             // read a byte, then
+        //Serial.write(c);                    // print it out the serial monitor
         if (c == '\n') {                    // if the byte is a newline character
 
           // if the current line is blank, you got two newline characters in a row.
@@ -51,10 +83,12 @@ void loop()
             client.println("HTTP/1.1 200 OK");
             client.println("Content-type:text/html");
             client.println();
-            client.print(response);     //This is set earlier, and needs to be send here, because else newer phones don't like it, android 2.3 doesn't care, but 6.0 does. Then the response is sent earlier than the Http header.
+
+            // the content of the HTTP response follows the header:
+            client.print(response);
+
+            // The HTTP response ends with another blank line:
             client.println();
-
-
             // break out of the while loop:
             break;
           }
@@ -65,7 +99,8 @@ void loop()
         else if (c != '\r') {    // if you got anything else but a carriage return character,
           currentLine += c;      // add it to the end of the currentLine
         }
-        if (currentLine.endsWith("GET /START")) {    //If the phone checks if the server is really this.
+
+        if (currentLine.endsWith("GET /START")) {    //If the next button is pressed
           response = "YES";
           
           
@@ -80,14 +115,16 @@ void loop()
           //this is done when the phone requests the amount of volts, which are calculated on the phone.
         }
        //You can add every get statement eg: "GET /"
-       
       }
       if (countWhile > 2000) {  //The wifi library is sometimes really buggy, especially when requesting data using a browser, android is not a problem
       cancel = false;           //So this is to prevent staying in the loop infinitly
       }
       delayMicroseconds(10);    //The 2000 looping is done really fast.
     }
+    // close the connection:
     client.stop();
+   
   }
 }
+
 
