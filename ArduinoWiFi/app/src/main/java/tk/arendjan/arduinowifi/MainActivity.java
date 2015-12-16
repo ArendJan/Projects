@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //This gets the saved IP address, and puts it in the variable, if not set, then it starts the Setting activity.
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         ip = preferences.getString("IP", "NONE");
-        if(ip.equals("NONE")){
+        if(ip.equals("NONE")){//There is no IP set.
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
         }
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 // you can set the correct destination of the output, or what has to be done with it.
             }
         });
+        //TODO: Do something with a button or something like that.
 
     }
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     //Can be fired with: new RequestTask().execute(String url, String MODE(1 for main label, rest you can change/add));
     class RequestTask extends AsyncTask<String, String, String> {
         private int MODE = 0; //1 == title of song , 2 == volume
-        private boolean error = false;
+        private boolean error = false; //If there was an error.
         @Override
         protected String doInBackground(String... uri) {
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            //remove the extra texts, HTTP/blablabla because the LinkIt ONE WIFI library is shit.
+            //remove the extra texts, HTTP/blablabla because the LinkIt ONE WIFI library is shit.(actually I was shit...)
             result = result.replace("HTTP/1.1 200 OKContent-type:text/html", "");
             if(!error){
                 //Everything OK
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(result);
                 }
                 else if(MODE == 2){
-
+                    //TODO: implement an algorithm to show the response/ or do something ith it.
                 }
 
             }

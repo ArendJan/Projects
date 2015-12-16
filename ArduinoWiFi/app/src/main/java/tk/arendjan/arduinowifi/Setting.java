@@ -104,7 +104,7 @@ public class Setting extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(Setting.this, "This is a server, but it is not the Arduino/LinkIt ONE running the correct software.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Setting.this, "This is a server, but it is not the Arduino/LinkIt ONE and/or running the correct software.", Toast.LENGTH_LONG).show();
                 }
             }
             else{
