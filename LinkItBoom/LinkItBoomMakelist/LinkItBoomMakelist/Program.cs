@@ -23,8 +23,8 @@ namespace LinkItBoomMakelist
 
                 foreach (string x in filePaths)
                 {
-                    lines = lines + x.Remove(0, path.Length + 1) + " ";
-                    Console.WriteLine(x.Remove(0, path.Length + 1));
+                    lines = lines + x.Remove(0, path.Length) + " ";
+                    Console.WriteLine(x.Remove(0, path.Length).Replace("/", "").Replace("\\", ""));
 
                     //file.WriteLine(x.Remove(0, path.Length + 1));
 

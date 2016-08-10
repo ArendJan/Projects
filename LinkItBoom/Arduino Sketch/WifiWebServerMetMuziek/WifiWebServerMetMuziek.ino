@@ -26,6 +26,8 @@ int counter;              //for in the setup, and used also in nextsong
 boolean pauseBool = false;//If the music is paused
 void setup()
 {
+  Serial.begin(115200);
+  Serial.println("asdfasdfasdf");
   previousState = 10;//this is the variable used for storing the current audiostatus, because getStatus contains a bug....
   pinMode(13, OUTPUT);    //IDK why this doesn't work, but the led doesn't change.
   LAudio.begin();         //Start the audio
@@ -43,6 +45,7 @@ void setup()
     while (myFile.available()) {
       int i = myFile.read();  //Some voodoo to make sure the character is added to the fileread var, without this, the ascii number is added(C logic)
       char c = char(i);
+      Serial.print(c);
       fileread = fileread + c;
       if (fileread.endsWith("mp3 ")) {//Found a song ( the text file is: "asdf.mp3<space>asdf2.mp3<space>" )
         fileread.remove(fileread.length() - 1);//Remove the <space>

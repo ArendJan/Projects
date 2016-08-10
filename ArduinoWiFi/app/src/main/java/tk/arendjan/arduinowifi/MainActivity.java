@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        new RequestTask().execute("http://svshizzle.com/test/getStatement.php?test=klopt", "1");
 
         //This gets the saved IP address, and puts it in the variable, if not set, then it starts the Setting activity.
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         get.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                new RequestTask().execute("http://192.168.2.103/?helloworld", "1");
                 new RequestTask().execute(ip + "GET", "1"); //Change the "GET" string to a string that is checked by the Arduino.
                 //The "1" is for the correct textview, if you have more than 1,
                 // you can set the correct destination of the output, or what has to be done with it.

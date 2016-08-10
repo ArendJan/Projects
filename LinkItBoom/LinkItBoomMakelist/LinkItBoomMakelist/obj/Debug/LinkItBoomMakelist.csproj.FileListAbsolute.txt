@@ -4,3 +4,9 @@ C:\Users\user\Documents\Visual Studio 2015\Projects\LinkItBoomMakelist\LinkItBoo
 C:\Users\user\Documents\Visual Studio 2015\Projects\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.csprojResolveAssemblyReference.cache
 C:\Users\user\Documents\Visual Studio 2015\Projects\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.exe
 C:\Users\user\Documents\Visual Studio 2015\Projects\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.pdb
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\bin\Debug\LinkItBoomMakelist.exe.config
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\bin\Debug\LinkItBoomMakelist.exe
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\bin\Debug\LinkItBoomMakelist.pdb
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.exe
+C:\Users\user\Documents\GitHub\Projects\LinkItBoom\LinkItBoomMakelist\LinkItBoomMakelist\obj\Debug\LinkItBoomMakelist.pdb
